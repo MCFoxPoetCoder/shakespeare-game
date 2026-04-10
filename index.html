@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+<style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        /* Parchment background color and a subtle texture */
+        background-color: #f4e8d1; 
+        background-image: url('https://www.transparenttextures.com/patterns/old-wall.png');
+        color: #333;
+        margin: 50px;
+      }
+      /* Apply the fancy font to all headings */
+      h1, h2, h3, caption {
+        font-family: 'Cinzel', serif;
+        color: #3e2723; /* Dark brown ink look */
+      }
+      .container {
+        /* Slightly lighter parchment for the game window */
+        background-color: #fffdf8; 
+        padding: 30px;
+        border-radius: 10px;
+        border: 2px solid #8d6e63; /* Brown border */
+        box-shadow: 0px 0px 15px rgba(0,0,0,0.2);
+        max-width: 700px;
+        margin: auto;
+      }
+      button {
+        background-color: #8d6e63; /* Brown buttons instead of green */
+        color: white;
+        padding: 15px 32px;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 20px;
+        font-family: 'Cinzel', serif; /* Fancy buttons */
+      }
+      button:hover { background-color: #5d4037; }
+      
+      textarea {
+        background-color: #fcf8f2;
+        border: 1px solid #ccc;
+      }
+
+      /* FOUR HUMORS TEAM COLORS */
+      /* Blood (Red), Yellow Bile (Yellow), Phlegm (Blue), Black Bile (Black) */
+      #table-t1-name { background-color: #D18080; color: black; padding: 5px; }
+      #table-t2-name { background-color: #FFE791; color: black; padding: 5px; }
+      #table-t3-name { background-color: #7EA9D6; color: black; padding: 5px; }
+      #table-t4-name { background-color: #B8B8B8; color: black; padding: 5px; }
+    </style>
+  </head>
+  <body>
+    <div id="instructions-page" class="container">
+      <h1>William Shakespeare Competition</h1>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a2/Shakespeare.jpg" alt="William Shakespeare" style="width: 150px; border-radius: 50%; border: 3px solid #8d6e63; margin-top: 10px;">
+      <p>An introduction to his life, times, and works through a game.</p>
+      
+      <hr>
+      
+      <h2>Game Rules</h2>
+      <p style="text-align: left;"><strong>Overview: </strong>In three rounds, you will gather facts about William Shakespeare.</p>
+      <ul style="text-align: left;">
+        <li>Round 1: The Times of Shakespeare</li>
+        <li>Round 2: The Life of Shakespeare</li>
+        <li>Round 3: The Works of Shakespeare</li>
+      </ul>
+      <p style="text-align: left;">Each round has two <strong>phases</strong>:</p>
+      <ul style="text-align: left;">
+        <li><strong>Phase 1:</strong> You have 5 minutes to use computers to gather facts for the round's topic.</li>
+        <li><strong>Phase 2:</strong> Take turns sharing one fact. Cross off facts given by other teams.
+          <ul>
+            <li>You earn <strong>1 point</strong> per unique fact given!</li>
+            <li>One team may steal a point if they have more relevant detail about the same fact</li>
+          </ul>
+        </li>
+      </ul>
+
+      <button onclick="goToTeamInput()">Start Game & Enter Teams</button>
+    </div>
+
+    <div id="team-page" class="container" style="display: none;">
+      <h2>Enter Team Names</h2>
+      <p>Please enter the names of the 4 teams competing today:</p>
+      
+      <input type="text" id="team1" placeholder="Team 1 Name"><br>
+      <input type="text" id="team2" placeholder="Team 2 Name"><br>
+      <input type="text" id="team3" placeholder="Team 3 Name"><br>
+      <input type="text" id="team4" placeholder="Team 4 Name"><br>
+
+      <button onclick="submitTeams()">Save Teams & Go To Round 1</button>
+    </div>
+
+<div id="round-page" class="container" style="display: none;">
+      <h2 id="round-title">Round X: Title</h2>
+      <p id="round-subtitle">Subtitle instructions here</p>
+      
+      <hr>
+      <h3>Phase 1: Fact Gathering</h3>
+      <h1 id="timer-display" style="font-size: 48px; color: #d32f2f;">05:00</h1>
+      <button id="timer-btn" onclick="startTimer(300, 'timer-display')">Start 5-Minute Timer</button>
+
+      <hr>
+      <h3>Phase 2: Sharing Facts</h3>
+      <p>Take turns sharing facts. 1 point per unique fact!</p>
+      
+      <table style="width: 100%; border-collapse: collapse; margin-top: 15px;">
+        <caption><strong>Facts Gathered</strong></caption>
+        <thead>
+          <tr>
+            <th id="table-t1-name">Team 1</th>
+            <th id="table-t2-name">Team 2</th>
+            <th id="table-t3-name">Team 3</th>
+            <th id="table-t4-name">Team 4</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><textarea rows="6" style="width: 90%;"></textarea></td>
+            <td><textarea rows="6" style="width: 90%;"></textarea></td>
+            <td><textarea rows="6" style="width: 90%;"></textarea></td>
+            <td><textarea rows="6" style="width: 90%;"></textarea></td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+
+      <div style="text-align: left; font-size: 18px; line-height: 2;">
+        <strong>Team 1 (<span id="round-t1-name">TBD</span>):</strong> <input type="number" id="round-t1-score" value="0" style="width: 50px;"> pts<br>
+        <strong>Team 2 (<span id="round-t2-name">TBD</span>):</strong> <input type="number" id="round-t2-score" value="0" style="width: 50px;"> pts<br>
+        <strong>Team 3 (<span id="round-t3-name">TBD</span>):</strong> <input type="number" id="round-t3-score" value="0" style="width: 50px;"> pts<br>
+        <strong>Team 4 (<span id="round-t4-name">TBD</span>):</strong> <input type="number" id="round-t4-score" value="0" style="width: 50px;"> pts<br>
+      </div>
+
+      <button id="save-round-btn" onclick="saveRoundScores()">Save Round Scores</button>
+    </div>
+
+    <div id="scoreboard-page" class="container" style="display: none;">
+      <h2>Scoreboard</h2>
+      <div id="scoreboard-table-container"></div>
+      
+      <button id="next-round-btn" onclick="prepareNextRound()">Start Next Round</button>
+    </div>
+
+    <script>
+// Variables to track our game state
+      let timerInterval;
+      let currentRound = 1; // Starts at 1
+      let currentGameData = []; // Will hold our team names
+
+      // Dictionary of round information
+      const roundDetails = {
+        1: { title: "Round 1: The Times of Shakespeare", subtitle: "(1564-1616) Contemporaries? Historical Events? What was it like?" },
+        2: { title: "Round 2: The Life of Shakespeare", subtitle: "When did he live? Where? Family? Job? Events?" },
+        3: { title: "Round 3: The Works of Shakespeare", subtitle: "How did he write (language/form)? What did he write?" }
+      };
+
+      function goToTeamInput() {
+        document.getElementById('instructions-page').style.display = 'none';
+        document.getElementById('team-page').style.display = 'block';
+      }
+
+      function submitTeams() {
+        // 1. Get the team names typed by the user
+        let t1 = document.getElementById('team1').value || "Team 1";
+        let t2 = document.getElementById('team2').value || "Team 2";
+        let t3 = document.getElementById('team3').value || "Team 3";
+        let t4 = document.getElementById('team4').value || "Team 4";
+
+        // 2. Build our 2D array locally! 
+        // Format: [Team Name, Round 1 Score, Round 2 Score, Round 3 Score, Total Score]
+        currentGameData = [
+          [t1, 0, 0, 0, 0],
+          [t2, 0, 0, 0, 0],
+          [t3, 0, 0, 0, 0],
+          [t4, 0, 0, 0, 0]
+        ];
+
+        // 3. Go directly to Round 1
+        loadRound(); 
+      }
+
+      // UPDATED FUNCTION: Prepares the generic Round Page
+      function loadRound() {
+        clearInterval(timerInterval);
+        // 1. Hide other pages, show the Round page
+        document.getElementById('team-page').style.display = 'none';
+        document.getElementById('scoreboard-page').style.display = 'none';
+        document.getElementById('round-page').style.display = 'block';
+
+        // 2. Set the Title and Subtitle dynamically based on currentRound
+        document.getElementById('round-title').innerText = roundDetails[currentRound].title;
+        document.getElementById('round-subtitle').innerText = roundDetails[currentRound].subtitle;
+
+        // 3. Inject team names into scoring & table
+        for (let i = 0; i < 4; i++) {
+          let teamName = currentGameData[i][0];
+          document.getElementById('round-t' + (i+1) + '-name').innerText = teamName;
+          document.getElementById('table-t' + (i+1) + '-name').innerText = teamName;
+        }
+
+        // 4. Reset everything (Timer, Inputs, Lists) for the new round
+        document.getElementById('timer-display').innerText = "05:00";
+        document.getElementById('timer-btn').disabled = false;
+        document.getElementById('save-round-btn').innerText = "Save Round " + currentRound + " Scores";
+        document.getElementById('save-round-btn').disabled = false;
+        
+        // Clear textareas and score inputs
+        let textareas = document.querySelectorAll('textarea');
+        textareas.forEach(ta => ta.value = "");
+        for (let i = 1; i <= 4; i++) {
+          document.getElementById('round-t' + i + '-score').value = 0;
+        }
+      }
+
+      // Timer Function (Unchanged except ensuring it clears old timers)
+      function startTimer(durationInSeconds, displayElementId) {
+        clearInterval(timerInterval); // Make sure no old timers are running
+        let timer = durationInSeconds;
+        let display = document.getElementById(displayElementId);
+        document.getElementById('timer-btn').disabled = true;
+
+        timerInterval = setInterval(function () {
+            let minutes = parseInt(timer / 60, 10);
+            let seconds = parseInt(timer % 60, 10);
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+            display.innerText = minutes + ":" + seconds;
+
+            if (--timer < 0) {
+                clearInterval(timerInterval);
+                display.innerText = "TIME'S UP!";
+                
+                // NEW: Play a sound
+                let chime = new Audio('https://actions.google.com/sounds/v1/alarms/beep_short.ogg');
+                chime.play();
+                
+                // Delay the alert slightly so it doesn't block the sound from playing
+                setTimeout(function() {
+                  alert("Fact gathering time is over! Begin Phase 2.");
+                }, 500); 
+            }
+        }, 1000);
+      }
+
+      function saveRoundScores() {
+        // 1. Get the scores from the input boxes
+        let scores = [
+          parseInt(document.getElementById('round-t1-score').value) || 0,
+          parseInt(document.getElementById('round-t2-score').value) || 0,
+          parseInt(document.getElementById('round-t3-score').value) || 0,
+          parseInt(document.getElementById('round-t4-score').value) || 0
+        ];
+
+        // 2. Do the math locally! Update our currentGameData array
+        for (let i = 0; i < 4; i++) {
+          // Update the specific round score
+          // currentRound is 1, 2, or 3, which perfectly matches our array columns!
+          currentGameData[i][currentRound] = scores[i];
+
+          // Calculate new total: Round 1 + Round 2 + Round 3
+          currentGameData[i][4] = currentGameData[i][1] + currentGameData[i][2] + currentGameData[i][3];
+        }
+
+        // 3. Hide round, show scoreboard
+        document.getElementById('round-page').style.display = 'none';
+        document.getElementById('scoreboard-page').style.display = 'block';
+        
+        // 4. Build the table using our newly updated local data
+        buildScoreboard(currentGameData);
+        updateScoreboardButton(); 
+      }
+
+      // Scoreboard Builder (Unchanged)
+      function buildScoreboard(data) {
+        let container = document.getElementById('scoreboard-table-container');
+        let html = '<table style="width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 18px;" border="1">';
+        html += '<tr style="background-color: #e9ecef; padding: 10px;">';
+        html += '<th>Team Name</th><th>Round 1</th><th>Round 2</th><th>Round 3</th><th>Total Score</th></tr>';
+        
+        for (let i = 0; i < data.length; i++) {
+          html += '<tr style="text-align: center;">';
+          html += '<td style="padding: 10px; text-align: left;"><strong>' + data[i][0] + '</strong></td>';
+          html += '<td>' + data[i][1] + '</td><td>' + data[i][2] + '</td><td>' + data[i][3] + '</td>';
+          html += '<td style="background-color: #d4edda;"><strong>' + data[i][4] + '</strong></td></tr>';
+        }
+        html += '</table>';
+        container.innerHTML = html;
+      }
+
+      // NEW FUNCTION: Updates the button on the scoreboard page
+      function updateScoreboardButton() {
+        let btn = document.getElementById('next-round-btn');
+        if (currentRound < 3) {
+          btn.innerText = "Start Round " + (currentRound + 1);
+          btn.onclick = prepareNextRound;
+        } else {
+          btn.innerText = "Game Over! Finish";
+          btn.onclick = function() { alert("Game Complete! Great job!"); };
+        }
+      }
+
+      // NEW FUNCTION: Advances to the next round
+      function prepareNextRound() {
+        currentRound++; // Increase the round counter by 1
+        loadRound(); // Reload the round page with the new info
+      }
+
+      // NEW: Listen for the "Enter" key anywhere on the document
+      document.addEventListener('keydown', function(event) {
+        if (event.key === 'Enter') {
+          
+          // 1. If we are on the Instructions Page
+          if (document.getElementById('instructions-page').style.display !== 'none') {
+            // Find the button in this section and simulate a click
+            document.querySelector('#instructions-page button').click();
+          } 
+          
+          // 2. If we are on the Team Input Page
+          else if (document.getElementById('team-page').style.display !== 'none') {
+            document.querySelector('#team-page button').click();
+          } 
+          
+          // 3. If we are on the Scoreboard Page
+          else if (document.getElementById('scoreboard-page').style.display !== 'none') {
+            document.getElementById('next-round-btn').click();
+          }
+
+          // Note: We deliberately do NOT include the 'round-page' here! 
+          // If we did, pressing Enter inside your textareas would submit the scores 
+          // instead of creating a new line for the next fact!
+        }
+      });
+    </script>
+  </body>
+</html>
