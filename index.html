@@ -10,21 +10,19 @@
         background-color: #f4e8d1;
         background-image: url('https://www.transparenttextures.com/patterns/old-wall.png');
         color: #333;
-        margin: 50px;
+        margin: 40px 20px;
       }
-      h1, h2, h3, caption {
-        font-family: 'Cinzel', serif;
-        color: #3e2723;
-      }
+      h1, h2, h3, caption { font-family: 'Cinzel', serif; color: #3e2723; }
       .container {
         background-color: #fffdf8;
         padding: 30px;
         border-radius: 10px;
         border: 2px solid #8d6e63;
-        box-shadow: 0px 0px 15px rgba(0,0,0,0.2);
+        box-shadow: 0 0 15px rgba(0,0,0,0.2);
         max-width: 700px;
         margin: auto;
       }
+      #round-page { max-width: 920px; }
       button {
         background-color: #8d6e63;
         color: white;
@@ -37,189 +35,233 @@
         font-family: 'Cinzel', serif;
       }
       button:hover { background-color: #5d4037; }
+      button:disabled { background-color: #bbb; cursor: default; }
 
-      input[type="text"] {
-        width: 80%;
-        padding: 10px;
-        margin: 10px 0;
+      /* ── Team input ──────────────────────────── */
+      .team-input-row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        margin: 8px 0;
+      }
+      input.team-input {
+        width: 60%;
+        padding: 10px 12px;
         border: 1px solid #ccc;
         border-radius: 4px;
         font-size: 16px;
+        border-left-width: 6px;
       }
+      .team-add-remove {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        margin-top: 8px;
+      }
+      .btn-sm  { padding: 8px 18px !important; font-size: 13px !important; margin-top: 0 !important; }
+      .btn-red { background-color: #c62828 !important; }
+      .btn-red:hover { background-color: #8e0000 !important; }
 
-      textarea {
-        background-color: #fcf8f2;
+      /* ── Facts grid ──────────────────────────── */
+      .facts-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        margin-top: 10px;
+        text-align: left;
+      }
+      .fact-col {
         border: 1px solid #ccc;
+        border-radius: 6px;
+        overflow: hidden;
+        background: #fffdf8;
+        display: flex;
+        flex-direction: column;
       }
+      .fact-col-header {
+        padding: 7px 8px;
+        font-family: 'Cinzel', serif;
+        font-size: 12px;
+        font-weight: 600;
+        text-align: center;
+        border-bottom: 2px solid rgba(0,0,0,0.15);
+        line-height: 1.3;
+        word-break: break-word;
+      }
+      .fact-list {
+        padding: 6px;
+        flex: 1;
+        min-height: 70px;
+        max-height: 210px;
+        overflow-y: auto;
+      }
+      .fact-row { display: flex; align-items: center; gap: 3px; margin-bottom: 3px; }
+      .fact-num { font-size: 11px; color: #999; min-width: 16px; flex-shrink: 0; text-align: right; }
+      input.fact-input {
+        flex: 1;
+        min-width: 0;
+        border: 1px solid #ddd;
+        border-radius: 3px;
+        padding: 3px 5px;
+        font-size: 12px;
+        background: #fcf8f2;
+        border-left-width: 1px;
+      }
+      input.fact-input:focus { outline: 1px solid #8d6e63; border-color: #8d6e63; }
+      button.fact-del {
+        background: none; border: none; color: #ccc;
+        cursor: pointer; padding: 0 2px; font-size: 14px;
+        margin: 0; line-height: 1; flex-shrink: 0; font-family: Arial, sans-serif;
+      }
+      button.fact-del:hover { color: #d32f2f; background: none; }
+      button.add-fact-btn {
+        width: 100%; padding: 5px !important; font-size: 11px !important;
+        background: #f5ede0 !important; border: none; border-top: 1px solid #ddd;
+        cursor: pointer; color: #8d6e63 !important; font-family: 'Cinzel', serif;
+        margin: 0 !important; border-radius: 0 !important;
+      }
+      button.add-fact-btn:hover { background: #ede0d0 !important; }
 
-      /* FOUR HUMORS TEAM COLORS */
-      #table-t1-name { background-color: #D18080; color: black; padding: 5px; }
-      #table-t2-name { background-color: #FFE791; color: black; padding: 5px; }
-      #table-t3-name { background-color: #7EA9D6; color: black; padding: 5px; }
-      #table-t4-name { background-color: #B8B8B8; color: black; padding: 5px; }
+      /* ── Score rows ──────────────────────────── */
+      .scores-section { text-align: left; margin: 14px 0 6px; }
+      .score-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+      .team-score-badge {
+        display: inline-block;
+        padding: 4px 12px;
+        border-radius: 12px;
+        font-weight: bold;
+        font-size: 13px;
+        min-width: 110px;
+        max-width: 200px;
+        text-align: center;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        border: 2px solid rgba(0,0,0,0.15);
+      }
+      input.score-input {
+        width: 52px; padding: 5px 6px; border: 1px solid #ccc;
+        border-radius: 4px; font-size: 16px; text-align: center;
+        border-left-width: 1px;
+      }
+      button.penalty-btn {
+        background-color: #c62828 !important; color: white; border: none;
+        border-radius: 4px; padding: 5px 12px !important; font-size: 13px !important;
+        cursor: pointer; margin: 0 !important; font-family: 'Cinzel', serif;
+      }
+      button.penalty-btn:hover { background-color: #8e0000 !important; }
 
-      /* Game Over winner banner */
+      /* ── Restore banner ──────────────────────── */
+      #restore-banner {
+        display: none; max-width: 700px; margin: 0 auto 14px;
+        background: #fff3cd; border: 1px solid #f9a825;
+        border-radius: 8px; padding: 12px 20px;
+        text-align: center; font-size: 14px;
+      }
+      #restore-banner button { padding: 8px 18px !important; font-size: 13px !important; margin: 4px 6px 0 !important; }
+
+      /* ── Top nav ─────────────────────────────── */
+      .top-nav { max-width: 920px; margin: 0 auto 14px; text-align: right; }
+      .top-nav a {
+        display: inline-block; background-color: #5d4037; color: #FFE791;
+        font-family: 'Cinzel', serif; font-size: 13px; padding: 7px 16px;
+        border-radius: 5px; text-decoration: none; letter-spacing: 0.03em;
+      }
+      .top-nav a:hover { background-color: #3e2723; }
+
+      /* ── Winner / game over ──────────────────── */
       .winner-banner {
         background: linear-gradient(135deg, #8d6e63, #5d4037);
-        color: white;
-        padding: 25px;
-        border-radius: 10px;
-        margin: 20px 0;
+        color: white; padding: 25px; border-radius: 10px; margin: 20px 0;
       }
-      .winner-banner h3 {
-        color: #FFE791;
-        font-size: 1.4em;
-        margin: 0 0 8px 0;
-        font-family: 'Cinzel', serif;
-      }
-      .winner-name {
-        font-size: 1.9em;
-        font-family: 'Cinzel', serif;
-        color: #FFE791;
-        margin: 8px 0 0 0;
-      }
+      .winner-banner h3 { color: #FFE791; font-size: 1.4em; margin: 0 0 8px; font-family: 'Cinzel', serif; }
+      .winner-name { font-size: 1.9em; font-family: 'Cinzel', serif; color: #FFE791; margin: 8px 0 0; }
       .crown { font-size: 2.5em; }
 
-      /* STEALING RULES MODAL */
+      /* ── Modal ───────────────────────────────── */
       .modal-overlay {
-        display: none;
-        position: fixed;
-        top: 0; left: 0;
-        width: 100%; height: 100%;
-        background: rgba(0,0,0,0.55);
-        z-index: 1000;
-        justify-content: center;
-        align-items: flex-start;
-        padding-top: 40px;
-        box-sizing: border-box;
+        display: none; position: fixed; top: 0; left: 0;
+        width: 100%; height: 100%; background: rgba(0,0,0,0.55);
+        z-index: 1000; justify-content: center; align-items: flex-start;
+        padding-top: 40px; box-sizing: border-box;
       }
       .modal-overlay.open { display: flex; }
       .modal-box {
-        background: #fffdf8;
-        border: 2px solid #8d6e63;
-        border-radius: 10px;
-        padding: 30px 35px;
-        max-width: 620px;
-        width: 90%;
-        max-height: 80vh;
-        overflow-y: auto;
-        text-align: left;
-        box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+        background: #fffdf8; border: 2px solid #8d6e63; border-radius: 10px;
+        padding: 30px 35px; max-width: 620px; width: 90%; max-height: 80vh;
+        overflow-y: auto; text-align: left; box-shadow: 0 8px 30px rgba(0,0,0,0.3);
         position: relative;
       }
-      .modal-box h2 {
-        margin-top: 0;
-        font-size: 1.3em;
+      .modal-box h2 { margin-top: 0; font-size: 1.3em; }
+      button.modal-close {
+        position: absolute; top: 12px; right: 16px; background: none; border: none;
+        font-size: 1.5em; cursor: pointer; color: #5d4037; padding: 0; margin: 0;
+        font-family: Arial, sans-serif; line-height: 1;
       }
-      .modal-close {
-        position: absolute;
-        top: 12px; right: 16px;
-        background: none;
-        border: none;
-        font-size: 1.5em;
-        cursor: pointer;
-        color: #5d4037;
-        padding: 0;
-        margin: 0;
-        font-family: Arial, sans-serif;
-        line-height: 1;
-      }
-      .modal-close:hover { color: #d32f2f; background: none; }
+      button.modal-close:hover { color: #d32f2f; background: none; }
       .example-block {
-        background: #f4e8d1;
-        border-left: 4px solid #8d6e63;
-        padding: 10px 14px;
-        border-radius: 4px;
-        margin: 10px 0;
-        font-size: 0.95em;
+        background: #f4e8d1; border-left: 4px solid #8d6e63; padding: 10px 14px;
+        border-radius: 4px; margin: 10px 0; font-size: 0.95em;
       }
       .example-block.invalid { border-left-color: #d32f2f; background: #fdecea; }
-      .example-label {
-        font-weight: bold;
-        font-family: 'Cinzel', serif;
-        font-size: 0.85em;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        margin-bottom: 4px;
-      }
+      .example-label { font-weight: bold; font-family: 'Cinzel', serif; font-size: 0.85em; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; }
       .valid-label   { color: #2e7d32; }
       .invalid-label { color: #d32f2f; }
 
-      /* FLOATING RULES BUTTON */
+      /* ── Floating rules button ───────────────── */
       #rules-float-btn {
-        position: fixed;
-        bottom: 24px;
-        right: 24px;
-        z-index: 999;
-        background-color: #5d4037;
-        color: white;
-        border: none;
-        border-radius: 50px;
-        padding: 12px 20px;
-        font-size: 14px;
-        font-family: 'Cinzel', serif;
-        cursor: pointer;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-        margin: 0;
+        position: fixed; bottom: 24px; right: 24px; z-index: 999;
+        background-color: #5d4037; color: white; border: none; border-radius: 50px;
+        padding: 12px 20px; font-size: 14px; font-family: 'Cinzel', serif;
+        cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.3); margin: 0;
       }
       #rules-float-btn:hover { background-color: #3e2723; }
-      /* TOP NAV BAR */
-      .top-nav {
-        max-width: 700px;
-        margin: 0 auto 14px auto;
-        text-align: right;
-      }
-      .top-nav a {
-        display: inline-block;
-        background-color: #5d4037;
-        color: #FFE791;
-        font-family: 'Cinzel', serif;
-        font-size: 13px;
-        padding: 7px 16px;
-        border-radius: 5px;
-        text-decoration: none;
-        letter-spacing: 0.03em;
-      }
-      .top-nav a:hover { background-color: #3e2723; }
     </style>
   </head>
   <body>
 
-    <!-- TOP NAV: link to review version -->
+    <!-- RESTORE BANNER -->
+    <div id="restore-banner">
+      <strong>&#x1F4BE; A previous game was found.</strong>
+      Would you like to resume where you left off?
+      <button onclick="restoreGame()" style="background-color:#2e7d32;">Resume Game</button>
+      <button onclick="dismissRestore()" style="background-color:#8d6e63;">Start Fresh</button>
+    </div>
+
+    <!-- TOP NAV -->
     <div class="top-nav">
-      <a href="review-version.html" title="Review version for students who have already studied Shakespeare">
+      <a href="review-version.html" title="Review version — students draw from memory and notes">
         Review Version &#x1F4D6; &#x2192;
       </a>
     </div>
 
     <!-- INSTRUCTIONS PAGE -->
     <div id="instructions-page" class="container">
-      <h1>William Shakespeare Competition</h1>
+      <h1>The Great Shakespeare Competition</h1>
       <img src="https://upload.wikimedia.org/wikipedia/commons/a/a2/Shakespeare.jpg"
            alt="William Shakespeare"
-           style="width: 150px; border-radius: 50%; border: 3px solid #8d6e63; margin-top: 10px;">
+           style="width:150px; border-radius:50%; border:3px solid #8d6e63; margin-top:10px;">
       <p>An introduction to his life, times, and works through a game.</p>
-
       <hr>
-
       <h2>Game Rules</h2>
-      <p style="text-align: left;"><strong>Overview: </strong>In three rounds, you will gather facts about William Shakespeare.</p>
-      <ul style="text-align: left;">
+      <p style="text-align:left;"><strong>Overview: </strong>In three rounds, you will gather facts about William Shakespeare.</p>
+      <ul style="text-align:left;">
         <li>Round 1: The Times of Shakespeare</li>
         <li>Round 2: The Life of Shakespeare</li>
         <li>Round 3: The Works of Shakespeare</li>
       </ul>
-      <p style="text-align: left;">Each round has two <strong>phases</strong>:</p>
-      <ul style="text-align: left;">
-        <li><strong>Phase 1:</strong> You have 5 minutes to use computers to gather facts for the round's topic.</li>
+      <p style="text-align:left;">Each round has two <strong>phases</strong>:</p>
+      <ul style="text-align:left;">
+        <li><strong>Phase 1:</strong> You have 5 minutes to use computers to gather facts for the round&rsquo;s topic.</li>
         <li><strong>Phase 2:</strong> Take turns sharing one fact. Cross off facts given by other teams.
           <ul>
             <li>You earn <strong>1 point</strong> per unique fact given!</li>
-            <li>A valid <strong>fact</strong> must be <em>true and specific</em> — vague statements like
-              <em>"Shakespeare was famous"</em> do not count. A fact like
-              <em>"Shakespeare was born in Stratford-upon-Avon in 1564"</em> does.</li>
+            <li>A valid <strong>fact</strong> must be <em>true and specific</em> &mdash; vague statements like
+              <em>&ldquo;Shakespeare was famous&rdquo;</em> do not count. A fact like
+              <em>&ldquo;Shakespeare was born in Stratford-upon-Avon in 1564&rdquo;</em> does.</li>
             <li><strong>Stealing:</strong> A team may steal a point by providing a specific detail
-              the sharing team left out — but <em>only</em> if they had both the original fact
+              the sharing team left out &mdash; but <em>only</em> if they had both the original fact
               <em>and</em> the additional detail already written on their paper.
               <a href="#" onclick="openModal(); return false;"
                  style="color:#5d4037; font-weight:bold; white-space:nowrap;">
@@ -229,81 +271,50 @@
           </ul>
         </li>
       </ul>
-
       <button onclick="goToTeamInput()">Start Game &amp; Enter Teams</button>
     </div>
 
     <!-- TEAM INPUT PAGE -->
-    <div id="team-page" class="container" style="display: none;">
+    <div id="team-page" class="container" style="display:none;">
       <h2>Enter Team Names</h2>
-      <p>Please enter the names of the 4 teams competing today:</p>
-
-      <input type="text" id="team1" placeholder="Team 1 Name"><br>
-      <input type="text" id="team2" placeholder="Team 2 Name"><br>
-      <input type="text" id="team3" placeholder="Team 3 Name"><br>
-      <input type="text" id="team4" placeholder="Team 4 Name"><br>
-
+      <p>Enter 4 to 8 team names. Each team&rsquo;s colour is shown by the border on its input.</p>
+      <div id="team-inputs"></div>
+      <div class="team-add-remove">
+        <button id="add-team-btn"    class="btn-sm" onclick="addTeamInput()">+ Add Team</button>
+        <button id="remove-team-btn" class="btn-sm btn-red" onclick="removeLastTeam()" style="display:none;">&#x2212; Remove Last Team</button>
+      </div>
+      <br>
       <button onclick="submitTeams()">Save Teams &amp; Go To Round 1</button>
     </div>
 
     <!-- ROUND PAGE -->
-    <div id="round-page" class="container" style="display: none;">
+    <div id="round-page" class="container" style="display:none;">
       <h2 id="round-title">Round X: Title</h2>
-      <p id="round-subtitle">Subtitle instructions here</p>
-
+      <p id="round-subtitle">Subtitle here</p>
       <hr>
       <h3>Phase 1: Fact Gathering</h3>
-      <h1 id="timer-display" style="font-size: 48px; color: #d32f2f;">05:00</h1>
-      <button id="timer-btn" onclick="startTimer(300, 'timer-display')">Start 5-Minute Timer</button>
-
+      <h1 id="timer-display" style="font-size:48px; color:#d32f2f;">05:00</h1>
+      <button id="timer-btn" onclick="startTimer(300)">Start 5-Minute Timer</button>
       <hr>
       <h3>Phase 2: Sharing Facts</h3>
-      <p>Take turns sharing facts. 1 point per unique fact!</p>
-
-      <table style="width: 100%; border-collapse: collapse; margin-top: 15px;">
-        <caption><strong>Facts Gathered</strong></caption>
-        <thead>
-          <tr>
-            <th id="table-t1-name">Team 1</th>
-            <th id="table-t2-name">Team 2</th>
-            <th id="table-t3-name">Team 3</th>
-            <th id="table-t4-name">Team 4</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><textarea rows="6" style="width: 90%;"></textarea></td>
-            <td><textarea rows="6" style="width: 90%;"></textarea></td>
-            <td><textarea rows="6" style="width: 90%;"></textarea></td>
-            <td><textarea rows="6" style="width: 90%;"></textarea></td>
-          </tr>
-        </tbody>
-      </table>
+      <p style="margin-bottom:6px; font-size:14px;">
+        Press <strong>Enter</strong> in a fact box to add a numbered line &mdash; each line automatically adds 1 point to that team&rsquo;s score. Scores can still be edited manually below.
+      </p>
+      <div id="facts-grid" class="facts-grid"></div>
       <br>
-
-      <div style="text-align: left; font-size: 18px; line-height: 2;">
-        <strong>Team 1 (<span id="round-t1-name">TBD</span>):</strong>
-        <input type="number" id="round-t1-score" value="0" style="width: 50px;"> pts<br>
-        <strong>Team 2 (<span id="round-t2-name">TBD</span>):</strong>
-        <input type="number" id="round-t2-score" value="0" style="width: 50px;"> pts<br>
-        <strong>Team 3 (<span id="round-t3-name">TBD</span>):</strong>
-        <input type="number" id="round-t3-score" value="0" style="width: 50px;"> pts<br>
-        <strong>Team 4 (<span id="round-t4-name">TBD</span>):</strong>
-        <input type="number" id="round-t4-score" value="0" style="width: 50px;"> pts<br>
-      </div>
-
+      <div id="scores-section" class="scores-section"></div>
       <button id="save-round-btn" onclick="saveRoundScores()">Save Round Scores</button>
     </div>
 
     <!-- SCOREBOARD PAGE -->
-    <div id="scoreboard-page" class="container" style="display: none;">
+    <div id="scoreboard-page" class="container" style="display:none;">
       <h2>Scoreboard</h2>
       <div id="scoreboard-table-container"></div>
       <button id="next-round-btn" onclick="prepareNextRound()">Start Next Round</button>
     </div>
 
     <!-- GAME OVER PAGE -->
-    <div id="gameover-page" class="container" style="display: none;">
+    <div id="gameover-page" class="container" style="display:none;">
       <h2>Final Scoreboard</h2>
       <div id="final-scoreboard-container"></div>
       <div class="winner-banner">
@@ -314,7 +325,7 @@
       <button onclick="restartGame()">Play Again</button>
     </div>
 
-    <!-- FLOATING STEALING RULES BUTTON (always visible) -->
+    <!-- FLOATING RULES BUTTON -->
     <button id="rules-float-btn" onclick="openModal()">&#x1F4DC; Stealing Rules</button>
 
     <!-- STEALING RULES MODAL -->
@@ -322,7 +333,6 @@
       <div class="modal-box">
         <button class="modal-close" onclick="closeModal()" title="Close">&times;</button>
         <h2>&#x2696;&#xFE0F; Stealing Rules</h2>
-
         <p><strong>When can a team steal?</strong><br>
         A team may attempt to steal a point when the sharing team states a fact but omits
         an important specific detail. To make a valid steal, the challenging team must meet
@@ -330,213 +340,468 @@
         <ol>
           <li>They must have the <strong>original fact</strong> written on their paper.</li>
           <li>They must have the <strong>additional specific detail</strong> also written on
-              their paper — it cannot be something they thought of on the spot after hearing
+              their paper &mdash; it cannot be something they thought of on the spot after hearing
               the other team speak.</li>
         </ol>
         <p>If both conditions are met, the challenging team states their more complete version.
         The <strong>teacher has final say</strong> on whether the added detail is specific and
         significant enough to earn the steal. A steal that is awarded transfers the point
-        entirely — the original team does <em>not</em> keep it.</p>
-
-        <hr style="border-color:#8d6e63; margin: 16px 0;">
+        entirely &mdash; the original team does <em>not</em> keep it.</p>
+        <hr style="border-color:#8d6e63; margin:16px 0;">
         <h3 style="margin-bottom:8px;">Examples</h3>
-
         <div class="example-block">
           <div class="example-label valid-label">&#10003; Valid Steal</div>
           <p style="margin:4px 0;">
-            <strong>Team A says:</strong> "Shakespeare was born in 1564."<br>
-            <strong>Team B challenges:</strong> "We have written: Shakespeare was born on
-            April 23, 1564, in Stratford-upon-Avon, England."<br>
+            <strong>Team A says:</strong> &#x201C;Shakespeare was born in 1564.&#x201D;<br>
+            <strong>Team B challenges:</strong> &#x201C;We have written: Shakespeare was born on
+            April&nbsp;23, 1564, in Stratford-upon-Avon, England.&#x201D;<br>
             <strong>Result:</strong> Team B had both the birth-year fact <em>and</em> the
-            specific date and location already on their paper. The steal is valid — the point
-            goes to Team B.
+            specific date and location already on their paper. Steal is valid &mdash; point goes to Team B.
           </p>
         </div>
-
         <div class="example-block invalid">
-          <div class="example-label invalid-label">&#10007; Invalid Steal — Detail Not Written Down</div>
+          <div class="example-label invalid-label">&#10007; Invalid Steal &mdash; Detail Not Written Down</div>
           <p style="margin:4px 0;">
-            <strong>Team A says:</strong> "Shakespeare was born in Stratford-upon-Avon in 1564."<br>
-            <strong>Team B challenges:</strong> "We know the exact date was April 23rd!"<br>
-            <strong>Result:</strong> Team B can only show "1564" on their paper — the specific
-            date "April 23" was not written down before Team A spoke. The steal is
-            <em>not</em> valid. The point stays with Team A.
+            <strong>Team A says:</strong> &#x201C;Shakespeare was born in Stratford-upon-Avon in 1564.&#x201D;<br>
+            <strong>Team B challenges:</strong> &#x201C;We know the exact date was April&nbsp;23rd!&#x201D;<br>
+            <strong>Result:</strong> Team B can only show &#x201C;1564&#x201D; on their paper.
+            The specific date was not written before Team A spoke. Steal denied. Point stays with Team A.
           </p>
         </div>
-
         <div class="example-block invalid">
-          <div class="example-label invalid-label">&#10007; Invalid Steal — Detail Not Specific Enough</div>
+          <div class="example-label invalid-label">&#10007; Invalid Steal &mdash; New Fact, Not a Missing Detail</div>
           <p style="margin:4px 0;">
-            <strong>Team A says:</strong> "Shakespeare wrote comedies, tragedies, and histories."<br>
-            <strong>Team B challenges:</strong> "He also wrote sonnets!"<br>
-            <strong>Result:</strong> Sonnets are a genuinely new fact, not a missing detail
-            of Team A's statement. Team B should save that for their own turn. No steal.
+            <strong>Team A says:</strong> &#x201C;Shakespeare wrote comedies, tragedies, and histories.&#x201D;<br>
+            <strong>Team B challenges:</strong> &#x201C;He also wrote sonnets!&#x201D;<br>
+            <strong>Result:</strong> Sonnets are a separate new fact, not a missing detail of Team A&rsquo;s
+            statement. Team B should save that for their own turn. Steal denied.
           </p>
         </div>
-
         <p style="margin-top:14px; font-size:0.9em; color:#5d4037;">
-          <em>Remember: the teacher always has final say. When in doubt, be generous to the
-          defending team.</em>
+          <em>When in doubt, be generous to the defending team.</em>
         </p>
-
         <div style="text-align:center;">
-          <button onclick="closeModal()" style="margin-top:10px; padding:10px 28px; font-size:15px;">
-            Close
-          </button>
+          <button onclick="closeModal()" style="margin-top:10px; padding:10px 28px; font-size:15px;">Close</button>
         </div>
       </div>
     </div>
 
     <script>
-      // MODAL FUNCTIONS
-      function openModal() {
-        document.getElementById('steal-modal').classList.add('open');
+      // ── Constants ─────────────────────────────────────────────────────────
+      const TEAM_COLORS = [
+        { bg: '#D18080', border: '#b05050' },  // Crimson (Blood)
+        { bg: '#FFE791', border: '#c8a800' },  // Gold    (Yellow Bile)
+        { bg: '#7EA9D6', border: '#4a7ab5' },  // Cobalt  (Phlegm)
+        { bg: '#B8B8B8', border: '#888888' },  // Ash     (Black Bile)
+        { bg: '#8FBC8F', border: '#5a8a5a' },  // Sage
+        { bg: '#F4A460', border: '#c07030' },  // Amber
+        { bg: '#C4A8D4', border: '#8860a8' },  // Violet
+        { bg: '#7ECACA', border: '#3d9090' },  // Teal
+      ];
+
+      const MAX_TEAMS = 8;
+
+      const roundDetails = {
+        1: { title: 'Round 1: The Times of Shakespeare',
+             subtitle: '(1564\u20131616) Contemporaries? Historical Events? What was it like?' },
+        2: { title: 'Round 2: The Life of Shakespeare',
+             subtitle: 'When did he live? Where? Family? Job? Events?' },
+        3: { title: 'Round 3: The Works of Shakespeare',
+             subtitle: 'How did he write (language/form)? What did he write?' }
+      };
+
+      // ── State ─────────────────────────────────────────────────────────────
+      let timerInterval;
+      let currentRound     = 1;
+      let currentGameData  = [];
+      let numTeams         = 4;
+      let numTeamsEntering = 4;
+
+      // ── localStorage ──────────────────────────────────────────────────────
+      function saveState() {
+        localStorage.setItem('shakespeareGame', JSON.stringify({
+          currentRound, currentGameData, numTeams,
+          activePage: getActivePage(),
+          savedAt: Date.now()
+        }));
       }
-      function closeModal() {
-        document.getElementById('steal-modal').classList.remove('open');
+
+      function getActivePage() {
+        const ids = ['instructions-page','team-page','round-page','scoreboard-page','gameover-page'];
+        for (const id of ids) {
+          const el = document.getElementById(id);
+          if (el && el.style.display !== 'none') return id;
+        }
+        return 'instructions-page';
       }
-      // Close modal if user clicks the dark overlay (but not the box itself)
-      function handleOverlayClick(event) {
-        if (event.target === document.getElementById('steal-modal')) {
-          closeModal();
+
+      function checkSavedState() {
+        const raw = localStorage.getItem('shakespeareGame');
+        if (!raw) return;
+        try {
+          const state = JSON.parse(raw);
+          if (Date.now() - state.savedAt > 12 * 3600 * 1000) {
+            localStorage.removeItem('shakespeareGame'); return;
+          }
+          if (!state.currentGameData || state.currentGameData.length === 0) return;
+          window._savedState = state;
+          document.getElementById('restore-banner').style.display = 'block';
+        } catch(e) { localStorage.removeItem('shakespeareGame'); }
+      }
+
+      function restoreGame() {
+        const s = window._savedState;
+        currentRound    = s.currentRound;
+        currentGameData = s.currentGameData;
+        numTeams        = s.numTeams;
+        document.getElementById('restore-banner').style.display = 'none';
+        hideAllPages();
+        if (s.activePage === 'round-page') {
+          loadRound();
+        } else if (s.activePage === 'scoreboard-page') {
+          document.getElementById('scoreboard-page').style.display = 'block';
+          buildScoreboard(currentGameData, 'scoreboard-table-container');
+          updateScoreboardButton();
+        } else if (s.activePage === 'gameover-page') {
+          showGameOver();
+        } else {
+          document.getElementById('instructions-page').style.display = 'block';
         }
       }
 
-      let timerInterval;
-      let currentRound = 1;
-      let currentGameData = [];
+      function dismissRestore() {
+        localStorage.removeItem('shakespeareGame');
+        document.getElementById('restore-banner').style.display = 'none';
+        window._savedState = null;
+      }
 
-      const roundDetails = {
-        1: { title: "Round 1: The Times of Shakespeare", subtitle: "(1564\u20131616) Contemporaries? Historical Events? What was it like?" },
-        2: { title: "Round 2: The Life of Shakespeare", subtitle: "When did he live? Where? Family? Job? Events?" },
-        3: { title: "Round 3: The Works of Shakespeare", subtitle: "How did he write (language/form)? What did he write?" }
-      };
+      // ── Modal ─────────────────────────────────────────────────────────────
+      function openModal()  { document.getElementById('steal-modal').classList.add('open');    }
+      function closeModal() { document.getElementById('steal-modal').classList.remove('open'); }
+      function handleOverlayClick(e) {
+        if (e.target === document.getElementById('steal-modal')) closeModal();
+      }
 
+      // ── Utilities ─────────────────────────────────────────────────────────
+      function hideAllPages() {
+        ['instructions-page','team-page','round-page','scoreboard-page','gameover-page']
+          .forEach(id => { document.getElementById(id).style.display = 'none'; });
+      }
+
+      // ── Instructions → Team page ──────────────────────────────────────────
       function goToTeamInput() {
         document.getElementById('instructions-page').style.display = 'none';
         document.getElementById('team-page').style.display = 'block';
+        initTeamPage();
+      }
+
+      // ── Team page ─────────────────────────────────────────────────────────
+      function initTeamPage() {
+        numTeamsEntering = 4;
+        const container = document.getElementById('team-inputs');
+        container.innerHTML = '';
+        for (let i = 0; i < 4; i++) buildTeamRow(i);
+        const addBtn = document.getElementById('add-team-btn');
+        addBtn.disabled    = false;
+        addBtn.textContent = '+ Add Team';
+        document.getElementById('remove-team-btn').style.display = 'none';
+      }
+
+      function buildTeamRow(i) {
+        const c   = TEAM_COLORS[i];
+        const row = document.createElement('div');
+        row.className = 'team-input-row';
+        row.id = 'team-row-' + i;
+        const inp = document.createElement('input');
+        inp.type        = 'text';
+        inp.id          = 'team' + i;
+        inp.className   = 'team-input';
+        inp.placeholder = 'Team ' + (i + 1) + ' Name';
+        inp.style.borderLeftColor = c.bg;
+        row.appendChild(inp);
+        document.getElementById('team-inputs').appendChild(row);
+      }
+
+      function addTeamInput() {
+        if (numTeamsEntering >= MAX_TEAMS) return;
+        buildTeamRow(numTeamsEntering);
+        numTeamsEntering++;
+        document.getElementById('remove-team-btn').style.display = 'inline-block';
+        const addBtn = document.getElementById('add-team-btn');
+        if (numTeamsEntering >= MAX_TEAMS) {
+          addBtn.disabled    = true;
+          addBtn.textContent = 'Maximum 8 Teams';
+        }
+        document.getElementById('team' + (numTeamsEntering - 1)).focus();
+      }
+
+      function removeLastTeam() {
+        if (numTeamsEntering <= 4) return;
+        numTeamsEntering--;
+        const row = document.getElementById('team-row-' + numTeamsEntering);
+        if (row) row.remove();
+        const addBtn = document.getElementById('add-team-btn');
+        addBtn.disabled    = false;
+        addBtn.textContent = '+ Add Team';
+        if (numTeamsEntering <= 4) {
+          document.getElementById('remove-team-btn').style.display = 'none';
+        }
       }
 
       function submitTeams() {
-        let t1 = document.getElementById('team1').value || "Team 1";
-        let t2 = document.getElementById('team2').value || "Team 2";
-        let t3 = document.getElementById('team3').value || "Team 3";
-        let t4 = document.getElementById('team4').value || "Team 4";
-
-        currentGameData = [
-          [t1, 0, 0, 0, 0],
-          [t2, 0, 0, 0, 0],
-          [t3, 0, 0, 0, 0],
-          [t4, 0, 0, 0, 0]
-        ];
-
+        numTeams = numTeamsEntering;
+        currentGameData = [];
+        for (let i = 0; i < numTeams; i++) {
+          const v = (document.getElementById('team' + i).value || '').trim()
+                    || 'Team ' + (i + 1);
+          currentGameData.push([v, 0, 0, 0, 0]);
+        }
+        saveState();
         loadRound();
       }
 
+      // ── Round page ────────────────────────────────────────────────────────
       function loadRound() {
         clearInterval(timerInterval);
-
-        document.getElementById('team-page').style.display = 'none';
-        document.getElementById('scoreboard-page').style.display = 'none';
+        hideAllPages();
         document.getElementById('round-page').style.display = 'block';
-
-        document.getElementById('round-title').innerText = roundDetails[currentRound].title;
+        document.getElementById('round-title').innerText    = roundDetails[currentRound].title;
         document.getElementById('round-subtitle').innerText = roundDetails[currentRound].subtitle;
+        const td = document.getElementById('timer-display');
+        td.innerText   = '05:00';
+        td.style.color = '#d32f2f';
+        document.getElementById('timer-btn').disabled      = false;
+        const srb = document.getElementById('save-round-btn');
+        srb.innerText = 'Save Round ' + currentRound + ' Scores';
+        srb.disabled  = false;
+        buildRoundPage();
+        saveState();
+      }
 
-        for (let i = 0; i < 4; i++) {
-          let teamName = currentGameData[i][0];
-          document.getElementById('round-t' + (i + 1) + '-name').innerText = teamName;
-          document.getElementById('table-t' + (i + 1) + '-name').innerText = teamName;
+      function buildRoundPage() {
+        // Facts grid
+        const grid = document.getElementById('facts-grid');
+        grid.innerHTML = '';
+        grid.style.gridTemplateColumns =
+          numTeams <= 4 ? 'repeat(' + numTeams + ', 1fr)' : 'repeat(4, 1fr)';
+
+        for (let i = 0; i < numTeams; i++) {
+          const c      = TEAM_COLORS[i];
+          const col    = document.createElement('div');
+          col.className = 'fact-col';
+          col.id        = 'fact-col-' + i;
+
+          const hdr = document.createElement('div');
+          hdr.className            = 'fact-col-header';
+          hdr.style.backgroundColor = c.bg;
+          hdr.style.borderBottomColor = c.border;
+          hdr.textContent = currentGameData[i][0];
+
+          const list = document.createElement('div');
+          list.className = 'fact-list';
+          list.id        = 'fact-list-' + i;
+
+          const addBtn = document.createElement('button');
+          addBtn.className   = 'add-fact-btn';
+          addBtn.textContent = '+ Add Fact';
+          addBtn.onclick     = (function(idx){ return function(){ addFactRow(idx); }; })(i);
+
+          col.appendChild(hdr);
+          col.appendChild(list);
+          col.appendChild(addBtn);
+          grid.appendChild(col);
+          addFactRow(i, true); // seed one empty row silently
         }
 
-        // Reset timer display and colour
-        let timerDisplay = document.getElementById('timer-display');
-        timerDisplay.innerText = "05:00";
-        timerDisplay.style.color = '#d32f2f';
+        // Score rows
+        const sec = document.getElementById('scores-section');
+        sec.innerHTML = '<p style="font-size:14px; margin:0 0 8px;"><strong>Round Scores</strong> &mdash; edit any score manually if needed.</p>';
 
-        document.getElementById('timer-btn').disabled = false;
-        document.getElementById('save-round-btn').innerText = "Save Round " + currentRound + " Scores";
-        document.getElementById('save-round-btn').disabled = false;
+        for (let i = 0; i < numTeams; i++) {
+          const c   = TEAM_COLORS[i];
+          const row = document.createElement('div');
+          row.className = 'score-row';
 
-        document.querySelectorAll('textarea').forEach(ta => ta.value = "");
-        for (let i = 1; i <= 4; i++) {
-          document.getElementById('round-t' + i + '-score').value = 0;
+          const badge = document.createElement('span');
+          badge.className             = 'team-score-badge';
+          badge.style.backgroundColor = c.bg;
+          badge.style.borderColor     = c.border;
+          badge.textContent           = currentGameData[i][0];
+
+          const inp = document.createElement('input');
+          inp.type      = 'number';
+          inp.id        = 'score-' + i;
+          inp.className = 'score-input';
+          inp.value     = 0;
+          inp.min       = 0;
+
+          const pts = document.createElement('span');
+          pts.textContent    = 'pts';
+          pts.style.fontSize = '15px';
+
+          const pen = document.createElement('button');
+          pen.className   = 'penalty-btn';
+          pen.innerHTML   = '&#x2212;1 Penalty';
+          pen.title       = 'Deduct 1 point from ' + currentGameData[i][0];
+          pen.onclick     = (function(idx){ return function(){ applyPenalty(idx); }; })(i);
+
+          row.appendChild(badge);
+          row.appendChild(inp);
+          row.appendChild(pts);
+          row.appendChild(pen);
+          sec.appendChild(row);
         }
       }
 
-      function startTimer(durationInSeconds, displayElementId) {
+      // ── Fact entry ────────────────────────────────────────────────────────
+      function addFactRow(teamIdx, silent) {
+        const list = document.getElementById('fact-list-' + teamIdx);
+        const num  = list.children.length + 1;
+        const row  = document.createElement('div');
+        row.className = 'fact-row';
+
+        const ns = document.createElement('span');
+        ns.className   = 'fact-num';
+        ns.textContent = num + '.';
+
+        const inp = document.createElement('input');
+        inp.type        = 'text';
+        inp.className   = 'fact-input';
+        inp.placeholder = 'Fact ' + num + '\u2026';
+        inp.addEventListener('keydown',
+          (function(idx){ return function(e){ factKeyDown(e, idx); }; })(teamIdx));
+
+        const del = document.createElement('button');
+        del.className   = 'fact-del';
+        del.textContent = '\u00D7';
+        del.title       = 'Remove this fact';
+        del.onclick     = (function(idx){ return function(){ deleteFactRow(del, idx); }; })(teamIdx);
+
+        row.appendChild(ns);
+        row.appendChild(inp);
+        row.appendChild(del);
+        list.appendChild(row);
+
+        if (!silent) {
+          inp.focus();
+          syncScoreToFacts(teamIdx);
+          saveState();
+        }
+      }
+
+      function deleteFactRow(delBtn, teamIdx) {
+        const row  = delBtn.parentElement;
+        const list = row.parentElement;
+        if (list.children.length <= 1) {
+          row.querySelector('.fact-input').value = '';
+          syncScoreToFacts(teamIdx);
+          return;
+        }
+        row.remove();
+        renumberFacts(teamIdx);
+        syncScoreToFacts(teamIdx);
+        saveState();
+      }
+
+      function renumberFacts(teamIdx) {
+        const list = document.getElementById('fact-list-' + teamIdx);
+        list.querySelectorAll('.fact-row').forEach((row, idx) => {
+          row.querySelector('.fact-num').textContent = (idx + 1) + '.';
+          const inp = row.querySelector('.fact-input');
+          if (inp) inp.placeholder = 'Fact ' + (idx + 1) + '\u2026';
+        });
+      }
+
+      function factKeyDown(e, teamIdx) {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          addFactRow(teamIdx, false);
+        } else if (e.key === 'Backspace') {
+          const inp  = e.target;
+          const list = inp.parentElement.parentElement;
+          if (inp.value === '' && list.children.length > 1) {
+            const prev = inp.parentElement.previousElementSibling;
+            deleteFactRow(inp.parentElement.querySelector('.fact-del'), teamIdx);
+            if (prev) prev.querySelector('.fact-input').focus();
+          }
+        }
+      }
+
+      function syncScoreToFacts(teamIdx) {
+        const list = document.getElementById('fact-list-' + teamIdx);
+        if (!list) return;
+        const inp = document.getElementById('score-' + teamIdx);
+        if (inp) inp.value = list.querySelectorAll('.fact-row').length;
+      }
+
+      // ── Penalty ──────────────────────────────────────────────────────────
+      function applyPenalty(teamIdx) {
+        const inp = document.getElementById('score-' + teamIdx);
+        if (!inp) return;
+        inp.value = Math.max(0, (parseInt(inp.value, 10) || 0) - 1);
+        saveState();
+      }
+
+      // ── Timer ────────────────────────────────────────────────────────────
+      function startTimer(duration) {
         clearInterval(timerInterval);
-        let timer = durationInSeconds;
-        let display = document.getElementById(displayElementId);
+        let timer   = duration;
+        const disp  = document.getElementById('timer-display');
         document.getElementById('timer-btn').disabled = true;
 
-        timerInterval = setInterval(function () {
-          let minutes = parseInt(timer / 60, 10);
-          let seconds = parseInt(timer % 60, 10);
-          minutes = minutes < 10 ? "0" + minutes : minutes;
-          seconds = seconds < 10 ? "0" + seconds : seconds;
-          display.innerText = minutes + ":" + seconds;
-
-          // Turn orange under 60 seconds as a visual warning
-          if (timer <= 60 && timer > 0) {
-            display.style.color = '#e65100';
-          }
-
+        timerInterval = setInterval(function() {
+          const m = parseInt(timer / 60, 10);
+          const s = parseInt(timer % 60, 10);
+          disp.innerText = (m < 10 ? '0' : '') + m + ':' + (s < 10 ? '0' : '') + s;
+          if (timer <= 60 && timer > 0) disp.style.color = '#e65100';
           if (--timer < 0) {
             clearInterval(timerInterval);
-            display.innerText = "TIME'S UP!";
-            display.style.color = '#d32f2f';
-
-            let chime = new Audio('https://actions.google.com/sounds/v1/alarms/beep_short.ogg');
-            chime.play();
-
-            setTimeout(function () {
-              alert("Fact gathering time is over! Begin Phase 2.");
-            }, 500);
+            disp.innerText   = "TIME'S UP!";
+            disp.style.color = '#d32f2f';
+            new Audio('https://actions.google.com/sounds/v1/alarms/beep_short.ogg').play();
+            setTimeout(function() { alert('Fact gathering time is over! Begin Phase 2.'); }, 500);
           }
         }, 1000);
       }
 
+      // ── Save round scores ────────────────────────────────────────────────
       function saveRoundScores() {
-        let scores = [
-          parseInt(document.getElementById('round-t1-score').value) || 0,
-          parseInt(document.getElementById('round-t2-score').value) || 0,
-          parseInt(document.getElementById('round-t3-score').value) || 0,
-          parseInt(document.getElementById('round-t4-score').value) || 0
-        ];
-
-        for (let i = 0; i < 4; i++) {
-          currentGameData[i][currentRound] = scores[i];
-          currentGameData[i][4] = currentGameData[i][1] + currentGameData[i][2] + currentGameData[i][3];
+        for (let i = 0; i < numTeams; i++) {
+          const s = parseInt(document.getElementById('score-' + i).value, 10) || 0;
+          currentGameData[i][currentRound] = s;
+          currentGameData[i][4] = currentGameData[i][1]
+                                 + currentGameData[i][2]
+                                 + currentGameData[i][3];
         }
-
-        document.getElementById('round-page').style.display = 'none';
+        saveState();
+        hideAllPages();
         document.getElementById('scoreboard-page').style.display = 'block';
-
         buildScoreboard(currentGameData, 'scoreboard-table-container');
         updateScoreboardButton();
       }
 
+      // ── Scoreboard ───────────────────────────────────────────────────────
       function buildScoreboard(data, containerId) {
-        let container = document.getElementById(containerId);
-        let maxScore = Math.max(...data.map(row => row[4]));
-
-        let html = '<table style="width:100%; border-collapse:collapse; margin-top:15px; font-size:18px;" border="1">';
+        const container = document.getElementById(containerId);
+        const maxScore  = Math.max(...data.map(r => r[4]));
+        let html = '<table style="width:100%;border-collapse:collapse;margin-top:15px;font-size:16px;" border="1">';
         html += '<tr style="background-color:#e9ecef;">';
-        html += '<th style="padding:8px;">Team Name</th>';
-        html += '<th style="padding:8px;">Round 1</th>';
-        html += '<th style="padding:8px;">Round 2</th>';
-        html += '<th style="padding:8px;">Round 3</th>';
-        html += '<th style="padding:8px;">Total</th></tr>';
-
+        ['Team','Rd 1','Rd 2','Rd 3','Total'].forEach(h => {
+          html += '<th style="padding:8px;">' + h + '</th>';
+        });
+        html += '</tr>';
         for (let i = 0; i < data.length; i++) {
-          let isLeader = data[i][4] === maxScore && maxScore > 0;
-          let rowBg   = isLeader ? 'background-color:#fff3cd;' : '';
-          let totalBg = isLeader ? 'background-color:#ffc107;' : 'background-color:#d4edda;';
-          let badge   = isLeader ? ' &#x1F451;' : '';
-
+          const isLeader = data[i][4] === maxScore && maxScore > 0;
+          const rowBg    = isLeader ? 'background-color:#fff3cd;' : '';
+          const totalBg  = isLeader ? 'background-color:#ffc107;' : 'background-color:#d4edda;';
+          const badge    = isLeader ? ' &#x1F451;' : '';
+          const c        = TEAM_COLORS[i] || TEAM_COLORS[0];
           html += '<tr style="text-align:center;' + rowBg + '">';
-          html += '<td style="padding:10px; text-align:left;"><strong>' + data[i][0] + badge + '</strong></td>';
+          html += '<td style="padding:8px 10px;text-align:left;">'
+               +  '<span style="display:inline-block;background:' + c.bg
+               +  ';border:1px solid ' + c.border
+               +  ';border-radius:8px;padding:2px 8px;font-size:13px;">'
+               +  '<strong>' + data[i][0] + badge + '</strong></span></td>';
           html += '<td style="padding:8px;">' + data[i][1] + '</td>';
           html += '<td style="padding:8px;">' + data[i][2] + '</td>';
           html += '<td style="padding:8px;">' + data[i][3] + '</td>';
@@ -548,63 +813,56 @@
       }
 
       function updateScoreboardButton() {
-        let btn = document.getElementById('next-round-btn');
+        const btn = document.getElementById('next-round-btn');
         if (currentRound < 3) {
-          btn.innerText = "Start Round " + (currentRound + 1);
-          btn.onclick = prepareNextRound;
+          btn.innerText = 'Start Round ' + (currentRound + 1);
+          btn.onclick   = prepareNextRound;
         } else {
-          btn.innerText = "See Final Results";
-          btn.onclick = showGameOver;
+          btn.innerText = 'See Final Results';
+          btn.onclick   = showGameOver;
         }
       }
 
-      function prepareNextRound() {
-        currentRound++;
-        loadRound();
-      }
+      function prepareNextRound() { currentRound++; loadRound(); }
 
+      // ── Game over ────────────────────────────────────────────────────────
       function showGameOver() {
-        document.getElementById('scoreboard-page').style.display = 'none';
+        hideAllPages();
         document.getElementById('gameover-page').style.display = 'block';
-
         buildScoreboard(currentGameData, 'final-scoreboard-container');
-
-        let maxScore = Math.max(...currentGameData.map(row => row[4]));
-        let winners  = currentGameData.filter(row => row[4] === maxScore).map(row => row[0]);
-        let winnerText = winners.length > 1
-          ? winners.join(' & ') + ' \u2014 it\'s a tie!'
-          : winners[0];
-
-        document.getElementById('winner-name').innerText = winnerText;
+        const maxScore   = Math.max(...currentGameData.map(r => r[4]));
+        const winners    = currentGameData.filter(r => r[4] === maxScore).map(r => r[0]);
+        document.getElementById('winner-name').innerText =
+          winners.length > 1 ? winners.join(' & ') + ' \u2014 it\u2019s a tie!' : winners[0];
+        saveState();
       }
 
       function restartGame() {
-        currentRound = 1;
-        currentGameData = [];
+        currentRound = 1; currentGameData = []; numTeams = 4;
         clearInterval(timerInterval);
-
-        ['gameover-page', 'round-page', 'scoreboard-page', 'team-page'].forEach(function(id) {
-          document.getElementById(id).style.display = 'none';
-        });
+        localStorage.removeItem('shakespeareGame');
+        hideAllPages();
         document.getElementById('instructions-page').style.display = 'block';
-
-        for (let i = 1; i <= 4; i++) {
-          document.getElementById('team' + i).value = '';
-        }
       }
 
-      // Enter key navigation (skips round page to protect textarea line breaks)
-      document.addEventListener('keydown', function (event) {
-        if (event.key === 'Enter') {
-          if (document.getElementById('instructions-page').style.display !== 'none') {
-            document.querySelector('#instructions-page button').click();
-          } else if (document.getElementById('team-page').style.display !== 'none') {
-            document.querySelector('#team-page button').click();
-          } else if (document.getElementById('scoreboard-page').style.display !== 'none') {
-            document.getElementById('next-round-btn').click();
-          }
+      // ── Enter key navigation (bypasses round page to protect fact inputs) ─
+      document.addEventListener('keydown', function(e) {
+        if (e.key !== 'Enter') return;
+        const ip = document.getElementById('instructions-page');
+        const tp = document.getElementById('team-page');
+        const sp = document.getElementById('scoreboard-page');
+        if (ip.style.display !== 'none') {
+          ip.querySelector('button').click();
+        } else if (tp.style.display !== 'none') {
+          if (document.activeElement && document.activeElement.classList.contains('team-input')) return;
+          tp.querySelector('button:last-of-type').click();
+        } else if (sp.style.display !== 'none') {
+          document.getElementById('next-round-btn').click();
         }
       });
+
+      // ── Init ─────────────────────────────────────────────────────────────
+      document.addEventListener('DOMContentLoaded', checkSavedState);
     </script>
   </body>
 </html>
